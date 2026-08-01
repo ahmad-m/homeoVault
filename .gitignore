@@ -1,0 +1,38 @@
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build folders
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.cache
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Environment
+.env
+
+# Node modules
+node_modules/

@@ -1,0 +1,46 @@
+# render.yaml
+# HomeoVault Production Deployment Render Blueprint
+# Ref: https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: homeovault
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    numInstances: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      
+      # Database Connection Parameters (to be bound to Render PostgreSQL)
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_SSL
+        value: "true"
+
+      # Authentication parameters
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 24h
+
+      # DB Pool Configuration
+      - key: DB_POOL_MAX
+        value: 4
+      - key: DB_POOL_IDLE_TIMEOUT
+        value: 10000
+      - key: DB_POOL_CONNECTION_TIMEOUT
+        value: 4000
