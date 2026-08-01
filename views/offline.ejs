@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/offline.css">
+</head>
+<body>
+
+  <!-- Offline Warning Card Main -->
+  <main class="offline-container">
+    <div class="reusable-card offline-card">
+      <div class="offline-icon">📶</div>
+      <h1 class="offline-title">You are offline</h1>
+      <p class="offline-message">It looks like your internet connection is down. HomeoVault requires an active network to perform transactions, transfers, or download reports.</p>
+      
+      <div style="margin: 24px 0;">
+        <span class="offline-badge">Offline Mode</span>
+      </div>
+
+      <button type="button" class="reusable-btn reusable-btn-primary" id="btn-reconnect" style="width:100%;">Try Reconnecting</button>
+    </div>
+  </main>
+
+  <script src="/js/offline.js"></script>
+</body>
+</html>

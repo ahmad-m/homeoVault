@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppliers Directory - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/inventory.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Suppliers Main Area -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/inventory.html">Inventory</a></li>
+        <li style="color:var(--primary);">Suppliers</li>
+      </ul>
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Suppliers Directory</h1>
+        <p class="text-secondary" style="font-size:0.95rem;">Manage homeopathic pharmacies and laboratory distributors.</p>
+      </div>
+
+      <!-- Split Layout -->
+      <div class="inventory-split-layout">
+        
+        <!-- Left Side: Registration Form -->
+        <section class="reusable-card">
+          <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:600; margin-bottom:20px;">Add Supplier</h3>
+          <form id="supplier-form">
+            <div class="form-group">
+              <label for="supplier_name" class="form-label" style="display:block;margin-bottom:8px;">Supplier Name *</label>
+              <input type="text" id="supplier_name" class="material-input" placeholder="e.g. Hahnemann Pharmacy" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact_name" class="form-label" style="display:block;margin-bottom:8px;">Contact Person</label>
+              <input type="text" id="contact_name" class="material-input" placeholder="e.g. Dr. Samuel">
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label" style="display:block;margin-bottom:8px;">Email Address</label>
+              <input type="email" id="email" class="material-input" placeholder="e.g. sales@hahnemann.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label" style="display:block;margin-bottom:8px;">Phone Number</label>
+              <input type="tel" id="phone" class="material-input" placeholder="e.g. 555-0199">
+            </div>
+
+            <div class="form-group" style="margin-bottom:24px;">
+              <label for="address" class="form-label" style="display:block;margin-bottom:8px;">Address</label>
+              <textarea id="address" class="material-input" style="height:60px;resize:none;" placeholder="Store address..."></textarea>
+            </div>
+
+            <button type="submit" class="reusable-btn reusable-btn-primary" style="width:100%;">Register Supplier</button>
+          </form>
+        </section>
+
+        <!-- Right Side: Suppliers List Table -->
+        <section class="reusable-card" style="padding:0; overflow:hidden;">
+          <div class="table-responsive">
+            <table class="reusable-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Contact</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody id="suppliers-table-body">
+                <tr>
+                  <td colspan="5" style="text-align:center;">
+                    <div class="spinner" style="margin:20px auto;"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/inventory.js"></script>
+</body>
+</html>

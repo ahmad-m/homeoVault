@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remedy Profile Details - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/medicine.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Details Content Panel -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/medicines.html">Catalog</a></li>
+        <li style="color:var(--primary);">Details</li>
+      </ul>
+
+      <!-- View Wrapper -->
+      <div id="details-view-container">
+        <!-- Rendered Dynamically by medicine.js -->
+        <div style="display:flex; justify-content:center; align-items:center; min-height:200px;">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/medicine.js"></script>
+</body>
+</html>

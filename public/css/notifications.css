@@ -1,0 +1,160 @@
+/*
+  HomeoVault - Notifications, Alerts & Background Jobs Stylesheet
+  Design System: Material Theme (Slate & Emerald)
+*/
+
+/* Notification center list container */
+.notifications-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 20px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.notification-item.unread {
+  border-left: 4px solid var(--primary);
+  background-color: var(--primary-glow);
+}
+
+.notification-item.unread.warn {
+  border-left-color: var(--warning);
+}
+
+.notification-item.unread.danger {
+  border-left-color: var(--danger);
+}
+
+.notification-content {
+  flex-grow: 1;
+}
+
+.notification-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.notification-message {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.notification-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.notification-type-badge {
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.notification-type-badge.LOW_STOCK { background-color: rgba(245, 158, 11, 0.15); color: var(--warning); }
+.notification-type-badge.OUT_OF_STOCK { background-color: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.notification-type-badge.EXPIRED { background-color: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.notification-type-badge.SYSTEM_ERROR { background-color: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+/* Switch Toggle Styling */
+.switch-control {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch-control input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-secondary);
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .switch-slider {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+input:checked + .switch-slider:before {
+  transform: translateX(22px);
+  background-color: #ffffff;
+}
+
+/* Background Job Status Cards */
+.job-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+}
+
+.job-info-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.job-info-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.job-status-badge {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.job-status-badge.SUCCESS { background-color: rgba(16, 185, 129, 0.15); color: var(--primary); }
+.job-status-badge.RUNNING { background-color: rgba(59, 130, 246, 0.15); color: var(--info); }
+.job-status-badge.FAILED { background-color: rgba(239, 68, 68, 0.15); color: var(--danger); }

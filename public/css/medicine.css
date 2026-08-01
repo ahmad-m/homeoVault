@@ -1,0 +1,229 @@
+/*
+  HomeoVault - Homeopathic Medicine Master Stylesheet
+  Design System: Material Theme (Slate & Emerald)
+*/
+
+/* Medicine Catalog Grid Layout */
+.medicine-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .medicine-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Filters Drawer */
+.filter-card {
+  position: sticky;
+  top: 90px;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-section-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-option-list {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Custom Checkbox styles for Filters */
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.filter-checkbox-label:hover {
+  color: var(--primary);
+}
+
+/* Medicine Catalog Listing Cards */
+.remedy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.remedy-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.remedy-category-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  background-color: var(--primary-glow);
+  color: var(--primary);
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.remedy-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.remedy-subnames {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.remedy-description {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.remedy-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.meta-pill {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* Autocomplete Suggestion Container */
+.autocomplete-suggestion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.suggestion-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Medicine Detail Panel */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+/* Tag clouds styling */
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-badge {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  transition: all var(--transition-fast);
+}
+
+.tag-badge:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-glow);
+}
+
+/* Import Drag and Drop */
+.import-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--bg-primary);
+  transition: all var(--transition-fast);
+}
+
+.import-dropzone.dragover {
+  border-color: var(--primary);
+  background-color: var(--primary-glow);
+}
+
+.import-dropzone-icon {
+  font-size: 2.5rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* Import Validation Error Table */
+.error-log-card {
+  border-left: 4px solid var(--danger);
+}
+
+.error-list {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.error-list-item {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}

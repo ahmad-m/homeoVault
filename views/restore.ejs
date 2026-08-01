@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restore Backup - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/settings.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Restore Panel Main -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container" style="max-width: 700px;">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/settings.html">Settings</a></li>
+        <li style="color:var(--primary);">Restore Wizard</li>
+      </ul>
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Database Restore Wizard</h1>
+        <p class="text-secondary" style="font-size:0.95rem;">Restore homeopathic medicines, suppliers directories, cabinet boxes, and stock levels from backup files.</p>
+      </div>
+
+      <div class="reusable-card">
+        <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:700; margin-bottom:20px;">Upload Backup File</h3>
+        
+        <!-- Drag & Drop Upload Container -->
+        <div class="upload-drop-zone" id="restore-drop-zone">
+          <div class="upload-icon">📤</div>
+          <p style="font-weight:700; margin-bottom:8px; color:var(--text-primary);">Drag & drop your backup file here</p>
+          <p class="text-secondary" style="font-size:0.82rem; margin-bottom:16px;">Supports JSON backup formats (.json) only</p>
+          <button type="button" class="reusable-btn reusable-btn-secondary" style="pointer-events:none;">Choose Backup File</button>
+          
+          <input type="file" id="restore-file-input" style="display:none;" accept=".json">
+        </div>
+
+        <div style="margin-top:24px; padding:16px 20px; background-color:rgba(239,68,68,0.08); border:1px dashed var(--danger); border-radius:var(--radius-md); display:flex; gap:16px; align-items:flex-start;">
+          <div style="font-size:1.4rem;">⚠️</div>
+          <div>
+            <strong style="color:var(--danger); display:block; margin-bottom:4px;">Overwrite Warning</strong>
+            <span class="text-secondary" style="font-size:0.8rem; line-height:1.4;">Performing a restore replaces all medicine catalogs, suppliers, and stock transaction ledgers. Any changes made since the backup date will be permanently deleted.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/settings.js"></script>
+</body>
+</html>

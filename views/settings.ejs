@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Settings - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/settings.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Settings Workspace Main -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container" style="max-width: 900px;">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li style="color:var(--primary);">System Configuration</li>
+      </ul>
+
+      <!-- Page Titles & Backups Actions -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+        <div>
+          <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">System Settings</h1>
+          <p class="text-secondary" style="font-size:0.95rem;">Configure application properties, defaults, and user preferences overrides.</p>
+        </div>
+        
+        <div style="display:flex; gap:10px;">
+          <a href="/backup.html" class="reusable-btn reusable-btn-secondary" style="text-decoration:none;">💾 Backups Ledger</a>
+          <a href="/restore.html" class="reusable-btn reusable-btn-secondary" style="text-decoration:none;">🔄 Restore wizard</a>
+        </div>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="tabs-navigation">
+        <button class="tab-btn active" data-tab="tab-system">Application Configurations</button>
+        <button class="tab-btn" data-tab="tab-user">Personal preferences</button>
+      </div>
+
+      <!-- Tab 1: Application Settings -->
+      <div class="tab-content-panel active" id="tab-system">
+        <div class="reusable-card">
+          <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:700; margin-bottom:20px;">General Settings</h3>
+          <form id="system-settings-form">
+            
+            <div class="settings-form-grid">
+              <div class="form-group">
+                <label for="set-app-name" class="form-label" style="display:block;margin-bottom:8px;">Application Name *</label>
+                <input type="text" id="set-app-name" class="material-input" required>
+              </div>
+
+              <div class="form-group">
+                <label for="set-family-name" class="form-label" style="display:block;margin-bottom:8px;">Family Medicine Name *</label>
+                <input type="text" id="set-family-name" class="material-input" required>
+              </div>
+            </div>
+
+            <div class="settings-form-grid">
+              <div class="form-group">
+                <label for="set-default-theme" class="form-label" style="display:block;margin-bottom:8px;">Default UI Theme</label>
+                <select class="material-select" id="set-default-theme">
+                  <option value="dark">Emerald Slate (Dark)</option>
+                  <option value="light">Emerald Clean (Light)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="set-language" class="form-label" style="display:block;margin-bottom:8px;">Default Language</label>
+                <select class="material-select" id="set-language">
+                  <option value="en">English (US)</option>
+                  <option value="de">German (Deutsch)</option>
+                  <option value="fr">French (Français)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="settings-form-grid">
+              <div class="form-group">
+                <label for="set-date-format" class="form-label" style="display:block;margin-bottom:8px;">Date Format</label>
+                <select class="material-select" id="set-date-format">
+                  <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                  <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                  <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="set-currency" class="form-label" style="display:block;margin-bottom:8px;">Default Currency</label>
+                <select class="material-select" id="set-currency">
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="settings-form-grid" style="border-top:1px solid var(--border); padding-top:20px;">
+              <div class="form-group">
+                <label for="set-default-location" class="form-label" style="display:block;margin-bottom:8px;">Default Cabinet Box</label>
+                <select class="material-select" id="set-default-location">
+                  <!-- Loaded dynamically by JS -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="set-low-stock-threshold" class="form-label" style="display:block;margin-bottom:8px;">Low Stock Default Threshold *</label>
+                <input type="number" id="set-low-stock-threshold" class="material-input" min="1" required>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+              <button type="submit" class="reusable-btn reusable-btn-primary">Save Application Settings</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab 2: User Preference Settings -->
+      <div class="tab-content-panel" id="tab-user">
+        <div class="reusable-card">
+          <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:700; margin-bottom:20px;">Personal Overrides</h3>
+          <form id="user-settings-form">
+            
+            <div class="settings-form-grid">
+              <div class="form-group">
+                <label for="set-user-theme" class="form-label" style="display:block;margin-bottom:8px;">Your Active Theme</label>
+                <select class="material-select" id="set-user-theme">
+                  <option value="dark">Emerald Slate (Dark)</option>
+                  <option value="light">Emerald Clean (Light)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="set-user-lang" class="form-label" style="display:block;margin-bottom:8px;">Your Preferred Language</label>
+                <select class="material-select" id="set-user-lang">
+                  <option value="en">English</option>
+                  <option value="de">German</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="max-width:50%; width:100%;">
+              <label for="set-user-landing" class="form-label" style="display:block;margin-bottom:8px;">Default Landing Page</label>
+              <select class="material-select" id="set-user-landing">
+                <option value="/dashboard">Dashboard</option>
+                <option value="/inventory.html">Inventory Stocks</option>
+                <option value="/medicines.html">Medicines Catalog</option>
+              </select>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+              <button type="submit" class="reusable-btn reusable-btn-primary">Save Preferences</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/settings.js"></script>
+</body>
+</html>

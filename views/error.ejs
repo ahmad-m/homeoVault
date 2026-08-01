@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Error - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #111827 0%, #0b0f19 100%);
+      padding: var(--spacing-lg);
+    }
+    .error-container {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-xl);
+    }
+    .error-status {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--danger);
+      margin-bottom: var(--spacing-sm);
+    }
+    .stack-trace {
+      text-align: left;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--bg-tertiary);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #f43f5e;
+      margin-top: var(--spacing-md);
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container glassmorphism">
+    <div class="error-status">{{ERROR_STATUS}}</div>
+    <h1 class="text-primary mb-sm" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">{{ERROR_TITLE}}</h1>
+    <p class="text-secondary mb-lg" style="line-height: 1.6;">{{ERROR_MESSAGE}}</p>
+    
+    <!-- Render stack trace in development mode only -->
+    {{ERROR_STACK}}
+
+    <div class="flex justify-center gap-md" style="margin-top: var(--spacing-lg);">
+      <a href="/" class="btn btn-outline">Go Home</a>
+      <a href="/dashboard" class="btn btn-primary">Try Dashboard</a>
+    </div>
+  </div>
+
+</body>
+</html>

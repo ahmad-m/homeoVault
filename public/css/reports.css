@@ -1,0 +1,134 @@
+/*
+  HomeoVault - Reports & Export Stylesheet
+  Design System: Material Theme (Slate & Emerald)
+*/
+
+/* Reports Directory Grids */
+.reports-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.report-item-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.report-item-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.report-item-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* Report Viewer Layout */
+.report-view-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .report-view-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Printer Header Block (Hidden on Screen, visible on Print) */
+#print-report-header {
+  display: none;
+}
+
+/* Print Layout rules */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 9pt !important;
+  }
+
+  /* Hide navigation controls, headers, sidebar filters, breadcrumbs, and export buttons */
+  .header, .footer, .reusable-breadcrumb, .report-view-layout aside, 
+  .export-action-row, #core-global-spinner, .toast-container, .dialog-overlay {
+    display: none !important;
+  }
+
+  /* Expand main grid */
+  .report-view-layout {
+    grid-template-columns: 1fr !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .reusable-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+  }
+
+  /* Show Printer Header */
+  #print-report-header {
+    display: block !important;
+    margin-bottom: 30px !important;
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 15px !important;
+  }
+
+  .print-header-top {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .print-logo {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    color: #10b981 !important;
+  }
+
+  .print-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    margin-top: 10px !important;
+  }
+
+  /* Force table gridlines and border colors for printing */
+  .reusable-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .reusable-table th {
+    background-color: #f1f5f9 !important;
+    color: #000000 !important;
+    border: 1px solid #94a3b8 !important;
+    font-weight: bold !important;
+    padding: 8px !important;
+  }
+
+  .reusable-table td {
+    border: 1px solid #cbd5e1 !important;
+    color: #000000 !important;
+    padding: 6px !important;
+  }
+
+  /* Page Numbers footer */
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+}

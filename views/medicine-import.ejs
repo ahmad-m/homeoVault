@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Import Remedies - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/medicine.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Import Form Layout -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container" style="max-width: 800px;">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/medicines.html">Catalog</a></li>
+        <li style="color:var(--primary);">Bulk Import</li>
+      </ul>
+
+      <!-- Page Headers -->
+      <div style="margin-bottom:32px;">
+        <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Bulk Catalog Loader</h1>
+        <p class="text-secondary" style="font-size:0.95rem;">Upload homeopathic remedy data sheets to register entries in bulk.</p>
+      </div>
+
+      <!-- Action Card -->
+      <div class="reusable-card" style="margin-bottom:32px;">
+        <form id="import-action-form">
+          <!-- Drop Area -->
+          <div class="import-dropzone" id="import-dropzone">
+            <div class="import-dropzone-icon">☁</div>
+            <h4 style="font-family:var(--font-heading);font-weight:600;margin-bottom:8px;">Drag & Drop Data File</h4>
+            <p class="text-secondary" style="font-size:0.85rem;margin-bottom:12px;">Supports CSV or JSON format templates (max 5MB)</p>
+            <button type="button" class="reusable-btn reusable-btn-secondary" style="padding:6px 14px;">Select File</button>
+            <input type="file" id="import-file-input" accept=".csv,.json" style="display:none;">
+          </div>
+          
+          <div id="selected-file-name" style="margin-top:16px; font-size:0.88rem; color:var(--primary); font-weight:600; text-align:center;">No file selected</div>
+
+          <!-- Action buttons -->
+          <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+            <a href="/medicines.html" class="reusable-btn reusable-btn-secondary">Cancel</a>
+            <button type="submit" class="reusable-btn reusable-btn-primary" id="btn-execute-import" disabled>Execute Transaction Load</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Spinner Loader Card -->
+      <div class="reusable-card" id="import-progress-card" style="display:none; text-align:center; padding:40px;">
+        <div class="spinner" style="margin: 0 auto 20px;"></div>
+        <h4 style="font-family:var(--font-heading);font-weight:600;margin-bottom:6px;">Processing Import...</h4>
+        <p class="text-secondary" style="font-size:0.85rem;">Running row validations, duplicate checks, and transactions load. Do not close browser.</p>
+      </div>
+
+      <!-- Summary Card -->
+      <div class="reusable-card" id="import-summary-card" style="display:none; margin-bottom:32px;"></div>
+
+      <!-- Validation Errors Card -->
+      <div class="reusable-card error-log-card" id="import-errors-card" style="display:none;">
+        <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:600; color:var(--danger); margin-bottom:16px;">Row Validation Error Logs</h3>
+        <p class="text-secondary" style="font-size:0.88rem; margin-bottom:16px;">The database transaction was fully rolled back to maintain integrity. Please correct the following rows:</p>
+        <ul class="error-list" id="validation-error-list"></ul>
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/medicine.js"></script>
+</body>
+</html>

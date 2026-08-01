@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-card">
+    <div class="auth-header">
+      <a href="/" class="auth-logo">
+        <div class="logo-icon">H</div>
+        Homeo<span>Vault</span>
+      </a>
+      <h2 class="auth-title">Access the Vault</h2>
+      <p class="auth-subtitle">Verify credentials to manage medicine stock.</p>
+    </div>
+
+    <!-- Alert Message Box -->
+    <div class="alert alert-danger" id="auth-alert"></div>
+
+    <form id="login-form">
+      <!-- Email Field -->
+      <div class="form-group">
+        <div class="form-input-container">
+          <input type="email" id="email" class="form-input" placeholder=" " required autocomplete="username">
+          <label for="email" class="form-label">Email Address</label>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <div class="form-input-container">
+          <input type="password" id="password" class="form-input" placeholder=" " required autocomplete="current-password">
+          <label for="password" class="form-label">Password</label>
+          <button type="button" class="password-toggle" aria-label="Toggle Password Visibility">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Checkbox Options -->
+      <div class="form-options">
+        <label class="checkbox-container">
+          <input type="checkbox" id="remember-me" class="checkbox-input">
+          <span>Remember Me</span>
+        </label>
+        <a href="/forgot-password.html" class="auth-link">Forgot Password?</a>
+      </div>
+
+      <!-- Submit Action -->
+      <button type="submit" class="btn-submit">Sign In</button>
+    </form>
+
+    <div class="auth-footer">
+      Don't have an account? <a href="/register.html" class="auth-link">Register Cabinets</a>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

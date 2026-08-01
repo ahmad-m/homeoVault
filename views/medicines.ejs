@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Catalog Master - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/medicine.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Main Grid Page -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/medicines.html" style="color:var(--primary);">Medicine Catalog</a></li>
+      </ul>
+
+      <!-- Title & Search Action Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+        <div>
+          <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Medicine Master</h1>
+          <p class="text-secondary" style="font-size:0.95rem;">Search and filter homeopathic remedies across the master database.</p>
+        </div>
+        
+        <!-- Search Input with Autocomplete Dropdown -->
+        <form id="medicine-search-form" class="search-container" style="max-width:400px; width:100%;">
+          <input type="text" id="medicine-search-input" class="material-input search-input" placeholder="Search remedy, latin or alias..." autocomplete="off">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div class="autocomplete-dropdown" id="search-autocomplete-dropdown"></div>
+        </form>
+      </div>
+
+      <div class="medicine-layout">
+        
+        <!-- Left Column: Filters sidebar drawer -->
+        <aside class="reusable-card filter-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 style="font-family:var(--font-heading); font-size:1.1rem; font-weight:700;">Filters</h3>
+            <button class="reusable-btn" style="padding:4px 8px; font-size:0.75rem; background-color:var(--bg-tertiary);" onclick="window.location.reload();">Reset All</button>
+          </div>
+
+          <!-- Categories Radio List -->
+          <div class="filter-section">
+            <div class="filter-section-title">Category</div>
+            <div class="filter-option-list" id="category-filter-list"></div>
+          </div>
+
+          <!-- Potencies Radio List -->
+          <div class="filter-section">
+            <div class="filter-section-title">Potencies</div>
+            <div class="filter-option-list" id="potency-filter-list"></div>
+          </div>
+
+          <!-- Manufacturers Radio List -->
+          <div class="filter-section">
+            <div class="filter-section-title">Manufacturers</div>
+            <div class="filter-option-list" id="manufacturer-filter-list"></div>
+          </div>
+        </aside>
+
+        <!-- Right Column: Results Grid and sorting -->
+        <section style="display:flex; flex-direction:column; gap:24px;">
+          <!-- Sorting Selection Bar -->
+          <div class="reusable-card" style="padding:12px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div style="font-size:0.9rem; color:var(--text-secondary);">Customize listing order:</div>
+            <select class="material-select" id="medicine-sort-select" style="max-width:200px; padding:6px 12px; font-size:0.85rem;">
+              <option value="name">Alphabetical (A - Z)</option>
+              <option value="-name">Alphabetical (Z - A)</option>
+              <option value="-created_at">Recently Created</option>
+              <option value="created_at">Oldest Cataloged</option>
+            </select>
+          </div>
+
+          <!-- Grid collection items -->
+          <div class="remedy-grid" id="medicine-catalog-grid"></div>
+
+          <!-- Pagination Footer -->
+          <div id="catalog-pagination"></div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/medicine-search.js"></script>
+  <script src="/js/medicine.js"></script>
+</body>
+</html>

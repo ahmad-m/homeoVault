@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports Directory - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/reports.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Main Directory Area -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li style="color:var(--primary);">Reports Cabinet</li>
+      </ul>
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Reports Drawer</h1>
+        <p class="text-secondary" style="font-size:0.95rem;">Compile aggregate ledgers, track expirations, verify valuations, and inspect audit logs.</p>
+      </div>
+
+      <!-- Report Cards List Grid -->
+      <div class="reports-list-grid">
+        
+        <!-- 1. Current Inventory -->
+        <div class="reusable-card report-item-card">
+          <h3 class="report-item-title">Current Inventory Report</h3>
+          <p class="report-item-desc">Comprehensive list of aggregate stock balances of all remedies. Filterable by category, potency, and cabinet placement.</p>
+          <a href="/report-view.html?type=inventory" class="reusable-btn reusable-btn-primary" style="text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 2. Stock Inward -->
+        <div class="reusable-card report-item-card">
+          <h3 class="report-item-title">Stock Inward Report</h3>
+          <p class="report-item-desc">Journal history of all stock receipts, package quantities, costs, and supplier deliveries within custom date boundaries.</p>
+          <a href="/report-view.html?type=stock-in" class="reusable-btn reusable-btn-primary" style="text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 3. Stock Outward -->
+        <div class="reusable-card report-item-card">
+          <h3 class="report-item-title">Stock Outward Report</h3>
+          <p class="report-item-desc">Log history of all consumed remedies, expired discards, and batch outflows with operator details and remarks.</p>
+          <a href="/report-view.html?type=stock-out" class="reusable-btn reusable-btn-primary" style="text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 4. Expiry Warnings -->
+        <div class="reusable-card report-item-card" style="border-top:4px solid var(--danger);">
+          <h3 class="report-item-title" style="color:var(--danger);">Batch Expiration Report</h3>
+          <p class="report-item-desc">Identifies expired lots or batches nearing their expiry date within 30, 60, or 90 days. Essential for inventory pruning.</p>
+          <a href="/report-view.html?type=expiry" class="reusable-btn reusable-btn-primary" style="background-color:var(--danger);text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 5. Low Stock -->
+        <div class="reusable-card report-item-card" style="border-top:4px solid var(--warning);">
+          <h3 class="report-item-title" style="color:var(--warning);">Low Stock Alerts</h3>
+          <p class="report-item-desc">Lists remedy potencies whose quantities have dropped below their designated minimum reorder levels.</p>
+          <a href="/report-view.html?type=low-stock" class="reusable-btn reusable-btn-primary" style="background-color:var(--warning);text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 6. Out of Stock -->
+        <div class="reusable-card report-item-card" style="border-top:4px solid var(--danger);">
+          <h3 class="report-item-title" style="color:var(--danger);">Out of Stock Alerts</h3>
+          <p class="report-item-desc">Quick list of all medicine potency combinations whose current balance is zero and require restocking.</p>
+          <a href="/report-view.html?type=out-of-stock" class="reusable-btn reusable-btn-primary" style="background-color:var(--danger);text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 7. Assets Valuation -->
+        <div class="reusable-card report-item-card">
+          <h3 class="report-item-title">Assets Valuation Report</h3>
+          <p class="report-item-desc">Aggregates purchase value and MRP values of active stock, detailing the total financial value of cabinet assets.</p>
+          <a href="/report-view.html?type=valuation" class="reusable-btn reusable-btn-primary" style="text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+        <!-- 8. User Activity Audit -->
+        <div class="reusable-card report-item-card">
+          <h3 class="report-item-title">Security & Activity Audit</h3>
+          <p class="report-item-desc">Chronological log of logins, profile settings updates, bulk imports, and catalog modifications for compliance checks.</p>
+          <a href="/report-view.html?type=activity" class="reusable-btn reusable-btn-primary" style="text-decoration:none;margin-top:auto;width:100%;">Generate Report</a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+  <!-- Header Sticky Bar -->
+  <header class="header glassmorphism">
+    <div class="container nav-container">
+      <a href="/" class="logo">
+        <div class="logo-icon">H</div>
+        Homeo<span>Vault</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/' || activePath === '/index.html') ? 'active' : '' %>">Home</a></li>
+        <li><a href="/dashboard" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/dashboard' || activePath === '/dashboard.html') ? 'active' : '' %>">Dashboard</a></li>
+        <li><a href="/medicines.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('medicine') ? 'active' : '' %>">Catalog</a></li>
+        <li><a href="/inventory.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('inventory') || activePath.includes('stock') || activePath.includes('location') || activePath.includes('supplier')) ? 'active' : '' %>">Inventory</a></li>
+        <li><a href="/reports.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('report') ? 'active' : '' %>">Reports</a></li>
+        <li><a href="/settings.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('setting') || activePath.includes('backup') || activePath.includes('restore') || activePath.includes('notification')) ? 'active' : '' %>">Settings</a></li>
+        <li><a href="/profile.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('profile') ? 'active' : '' %>">Profile</a></li>
+      </ul>
+    </div>
+  </header>

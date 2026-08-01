@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #111827 0%, #0b0f19 100%);
+      padding: var(--spacing-lg);
+    }
+    .error-container {
+      text-align: center;
+      max-width: 480px;
+      padding: var(--spacing-xxl) var(--spacing-xl);
+      border-radius: var(--radius-xl);
+    }
+    .error-code {
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--spacing-md);
+      letter-spacing: -0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container glassmorphism">
+    <div class="error-code">404</div>
+    <h1 class="text-primary mb-sm" style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700;">Remedy Map Lost</h1>
+    <p class="text-secondary mb-xl" style="line-height: 1.6;">The page you are looking for has been diluted beyond recognition or does not exist in our catalog index.</p>
+    <div class="flex justify-center gap-md">
+      <a href="/" class="btn btn-outline">Go Home</a>
+      <a href="/dashboard" class="btn btn-primary">Vault Dashboard</a>
+    </div>
+  </div>
+
+</body>
+</html>

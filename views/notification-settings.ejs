@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Settings - HomeoVault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/notifications.css">
+</head>
+<body>
+
+  <%- include('partials/header') %>
+
+  <!-- Settings Layout Main -->
+  <main class="py-xl" style="background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.03), transparent 60%); min-height: 85vh;">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <ul class="reusable-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/notifications.html">Notifications</a></li>
+        <li style="color:var(--primary);">Alerts & Jobs Config</li>
+      </ul>
+
+      <div style="margin-bottom:32px;">
+        <h1 style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; margin-bottom:5px;">Alerts & Background Jobs</h1>
+        <p class="text-secondary" style="font-size:0.95rem;">Configure alerts delivery preferences and trigger scheduled background jobs.</p>
+      </div>
+
+      <!-- Split Layout Grid -->
+      <div style="display:grid; grid-template-columns: 1.1fr 1.3fr; gap:32px; align-items:start; margin-bottom:40px;">
+        
+        <!-- Left: Preferences Toggles Card -->
+        <section class="reusable-card">
+          <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:700; margin-bottom:24px;">Alert Preferences</h3>
+          
+          <form id="notification-settings-form" style="display:flex; flex-direction:column; gap:24px;">
+            
+            <!-- Enable All Notifications -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Enable All Notifications</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Master toggle to turn off all alerts.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-enable-all" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <!-- Low Stock Warnings -->
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Low Stock Warnings</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Alert when stock falls below reorder limits.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-low-stock" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <!-- Expiry Warnings -->
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Batch Expiration Sweeps</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Alert on expired lots or within 30 days.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-expiry" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <!-- Dashboard Alerts -->
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Dashboard Alert Cards</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Log warnings in the visual dashboard panel.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-dashboard" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <!-- Email Alerts [Framework] -->
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Email Outbox (Framework)</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Dispatch notification SMTP logs.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-email">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <!-- Push Alerts [Framework] -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px;">
+              <div>
+                <strong style="display:block; color:var(--text-primary); margin-bottom:4px;">Push Notifications (Framework)</strong>
+                <span class="text-secondary" style="font-size:0.8rem;">Log mobile FCM/APNS pushes warnings.</span>
+              </div>
+              <label class="switch-control">
+                <input type="checkbox" id="pref-push">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <button type="submit" class="reusable-btn reusable-btn-primary" style="width:100%;">Save Alert Preferences</button>
+
+          </form>
+        </section>
+
+        <!-- Right: Background Jobs Scheduler Card -->
+        <section class="reusable-card">
+          <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:700; margin-bottom:24px;">Scheduler & Background Jobs</h3>
+          
+          <div id="jobs-list-container">
+            <div style="text-align:center; padding:20px;">
+              <div class="spinner" style="margin:0 auto;"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/core.js"></script>
+  <script src="/js/notifications.js"></script>
+</body>
+</html>
