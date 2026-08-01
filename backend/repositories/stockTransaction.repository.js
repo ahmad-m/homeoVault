@@ -11,7 +11,10 @@ class StockTransactionRepository extends BaseRepository {
   async listHistory({ medicine_id = null, type = null, limit = 20, offset = 0 }, client = null) {
     const params = [];
     let paramIdx = 1;
-    const whereClauses = [];
+    const whereClauses = [
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
 
     if (medicine_id) {
       whereClauses.push(`i.medicine_potency_id IN (SELECT id FROM medicine_potencies WHERE medicine_id = $${paramIdx++})`);
@@ -30,6 +33,8 @@ class StockTransactionRepository extends BaseRepository {
       FROM stock_transactions st
       JOIN inventory_batches ib ON st.inventory_batch_id = ib.id
       JOIN inventory i ON ib.inventory_id = i.id
+      JOIN medicine_potencies mp ON i.medicine_potency_id = mp.id
+      JOIN medicines m ON mp.medicine_id = m.id
       ${whereSql}
     `;
 

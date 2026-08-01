@@ -30,7 +30,10 @@ class ReportRepository extends BaseRepository {
   async getInventoryReport(filters = {}, { limit = 50, offset = 0 } = {}) {
     const params = [];
     let paramIdx = 1;
-    const whereClauses = [];
+    const whereClauses = [
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
 
     if (filters.category_id) {
       whereClauses.push(`m.category_id = $${paramIdx++}`);
@@ -89,7 +92,11 @@ class ReportRepository extends BaseRepository {
   async getStockMovementsReport(type, filters = {}, { limit = 50, offset = 0 } = {}) {
     const params = [];
     let paramIdx = 1;
-    const whereClauses = [`st.transaction_type = $${paramIdx++}`];
+    const whereClauses = [
+      `st.transaction_type = $${paramIdx++}`,
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
     params.push(type); // 'STOCK_IN' | 'STOCK_OUT' | 'ADJUSTMENT'
 
     if (filters.medicine_id) {
@@ -135,6 +142,7 @@ class ReportRepository extends BaseRepository {
       JOIN inventory_batches ib ON st.inventory_batch_id = ib.id
       JOIN inventory i ON ib.inventory_id = i.id
       JOIN medicine_potencies mp ON i.medicine_potency_id = mp.id
+      JOIN medicines m ON mp.medicine_id = m.id
       ${whereSql}
     `;
 
@@ -154,7 +162,11 @@ class ReportRepository extends BaseRepository {
   async getExpiryReport(filters = {}, { limit = 50, offset = 0 } = {}) {
     const params = [];
     let paramIdx = 1;
-    const whereClauses = ['ib.available_quantity > 0'];
+    const whereClauses = [
+      'ib.available_quantity > 0',
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
 
     if (filters.expiryStatus === 'expired') {
       whereClauses.push('ib.expiry_date <= CURRENT_DATE');
@@ -207,7 +219,10 @@ class ReportRepository extends BaseRepository {
    * 4. Low Stock / Out of Stock Reports
    */
   async getLowStockReport(statusType = 'low', { limit = 50, offset = 0 } = {}) {
-    const whereClauses = [];
+    const whereClauses = [
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
     if (statusType === 'out') {
       whereClauses.push('i.current_quantity = 0');
     } else {
@@ -231,7 +246,10 @@ class ReportRepository extends BaseRepository {
     `;
 
     const countSql = `
-      SELECT COUNT(*) FROM inventory i ${whereSql}
+      SELECT COUNT(*) FROM inventory i
+      JOIN medicine_potencies mp ON i.medicine_potency_id = mp.id
+      JOIN medicines m ON mp.medicine_id = m.id
+      ${whereSql}
     `;
 
     const dataRes = await this.executeQuery(dataSql, [parseInt(limit, 10), parseInt(offset, 10)]);
@@ -259,13 +277,17 @@ class ReportRepository extends BaseRepository {
       JOIN medicines m ON mp.medicine_id = m.id
       JOIN potencies p ON mp.potency_id = p.id
       LEFT JOIN locations l ON i.default_location_id = l.id
-      WHERE ib.available_quantity > 0
+      WHERE ib.available_quantity > 0 AND m.is_active = true AND mp.is_active = true
       ORDER BY m.name ASC
       LIMIT $1 OFFSET $2
     `;
 
     const countSql = `
-      SELECT COUNT(*) FROM inventory_batches WHERE available_quantity > 0
+      SELECT COUNT(ib.id) FROM inventory_batches ib
+      JOIN inventory i ON ib.inventory_id = i.id
+      JOIN medicine_potencies mp ON i.medicine_potency_id = mp.id
+      JOIN medicines m ON mp.medicine_id = m.id
+      WHERE ib.available_quantity > 0 AND m.is_active = true AND mp.is_active = true
     `;
 
     const dataRes = await this.executeQuery(dataSql, [parseInt(limit, 10), parseInt(offset, 10)]);

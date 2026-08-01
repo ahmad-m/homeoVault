@@ -1,0 +1,570 @@
+/*
+  HomeoVault - Comprehensive Mobile Responsive Stylesheet
+  Breakpoints:
+    - Desktop:  > 992px  (default styles)
+    - Tablet:   <= 992px
+    - Mobile:   <= 768px
+    - Small:    <= 480px
+*/
+
+/* ==========================================================================
+   MOBILE NAVIGATION — Hamburger + Slide-In Drawer
+   ========================================================================== */
+
+/* Hamburger Button — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--border, #374151);
+  border-radius: var(--radius-md, 8px);
+  padding: 8px 10px;
+  cursor: pointer;
+  z-index: 160;
+  flex-shrink: 0;
+}
+
+.nav-toggle .hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--text-primary, #f9fafb);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-toggle.is-open .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.is-open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle.is-open .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Backdrop — always in DOM, hidden by default */
+.nav-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 145;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-mobile-backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media (max-width: 768px) {
+  /* Show hamburger */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Show backdrop element */
+  .nav-mobile-backdrop {
+    display: block;
+  }
+
+  /* Drawer — uses transform so no layout bleed when closed */
+  .nav-links {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: min(300px, 80vw) !important;
+    gap: 0 !important;
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%) !important;
+    border-left: 1px solid rgba(16, 185, 129, 0.2) !important;
+    padding: 72px 0 32px !important;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5) !important;
+    overflow-y: auto !important;
+    z-index: 150 !important;
+    transform: translateX(110%) !important;
+    visibility: hidden;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.32s !important;
+    /* Critical: remove any margin/offset that could cause bleed */
+    margin: 0 !important;
+  }
+
+  .nav-links.mobile-active {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0s !important;
+  }
+
+  /* Drawer brand label at top */
+  .nav-links::before {
+    content: '🌿 HomeoVault';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 24px;
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--primary, #10b981);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    background: rgba(16, 185, 129, 0.04);
+  }
+
+  .nav-links li {
+    width: 100%;
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 24px !important;
+    font-size: 0.95rem !important;
+    font-weight: 500;
+    color: var(--text-secondary, #9ca3af) !important;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--primary, #10b981) !important;
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .nav-link::after {
+    display: none !important;
+  }
+
+  /* Remove backdrop-filter from header when menu is open so it doesn't clip the fixed drawer */
+  .header.menu-open {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-secondary) !important;
+  }
+}
+
+
+
+
+/* ==========================================================================
+   GLOBAL CONTAINER & TYPOGRAPHY
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+}
+
+/* ==========================================================================
+   PAGE HEADER / TITLE ROW
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  main > .container > div[style*="justify-content:space-between"],
+  main > .container > div[style*="justify-content: space-between"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  main > .container > div[style*="justify-content:space-between"] > div[style*="display:flex"],
+  main > .container > div[style*="justify-content: space-between"] > div[style*="display:flex"] {
+    width: 100%;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+  }
+
+  h1[style*="font-size:2.2rem"],
+  h1[style*="font-size: 2.2rem"] {
+    font-size: 1.6rem !important;
+  }
+}
+
+/* ==========================================================================
+   INVENTORY PAGE — Filter form
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  form#inventory-search-form {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  form#inventory-search-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  form#inventory-search-form button[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   INVENTORY ENTITY CARDS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .entity-card-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .entity-card-row > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .entity-card-row > div:last-child button,
+  .entity-card-row > div:last-child a {
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   STOCK-IN / STOCK-OUT
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .inventory-split-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   MEDICINE CATALOG
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .medicine-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .filter-card {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .medicine-layout > .filter-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .medicine-layout > .filter-card > .filter-section {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .remedy-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .medicine-layout > .filter-card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .medicine-layout > .filter-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   DASHBOARD
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .kpi-value {
+    font-size: 1.7rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quick-actions-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ==========================================================================
+   REPORTS
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .report-view-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .reports-list-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   SETTINGS PAGE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .tabs-navigation {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 7px 10px;
+  }
+
+  .settings-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   MEDICINE DETAILS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+.table-responsive {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .reusable-table th,
+  .reusable-table td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .reusable-pagination {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 12px;
+  }
+}
+
+/* ==========================================================================
+   MODALS — bottom sheet on mobile
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .modal-overlay,
+  .dialog-overlay,
+  div[id$="-modal"][style*="position:fixed"] {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .dialog-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    max-height: 92vh;
+  }
+
+  #edit-medicine-modal > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    border-radius: 16px 16px 0 0 !important;
+  }
+}
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  div[style*="display:grid"][style*="grid-template-columns:1fr 1fr"],
+  div[style*="display: grid"][style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .toast-container {
+    right: 5%;
+    left: 5%;
+    width: 90%;
+    bottom: 16px;
+  }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   AUTH PAGES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .auth-card,
+  div[style*="max-width:440px"],
+  div[style*="max-width: 440px"] {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   REUSABLE CARDS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .reusable-card {
+    padding: 16px !important;
+  }
+
+  .chart-card {
+    padding: 16px !important;
+    min-height: 280px !important;
+  }
+
+  .import-dropzone {
+    padding: 24px 16px;
+  }
+}
+
+/* ==========================================================================
+   BACKUP / RESTORE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .backup-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .backup-item > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .backup-item > div:last-child button {
+    flex: 1;
+  }
+
+  .upload-drop-zone {
+    padding: 24px 16px;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL
+   ========================================================================== */
+
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ACTION BUTTONS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .reusable-btn {
+    font-size: 0.82rem !important;
+    padding: 9px 13px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  div[style*="display:flex; gap:12px; flex-wrap:wrap"] > a {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 0.8rem !important;
+    padding: 8px 10px !important;
+  }
+}

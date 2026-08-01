@@ -20,7 +20,10 @@ class InventoryRepository extends BaseRepository {
   async listInventory({ query = '', category_id = null, location_id = null, status = '', limit = 10, offset = 0 }, client = null) {
     const params = [];
     let paramIdx = 1;
-    const whereClauses = [];
+    const whereClauses = [
+      'm.is_active = true',
+      'mp.is_active = true'
+    ];
 
     if (query && query.trim()) {
       const searchParam = `%${query.trim()}%`;
@@ -134,7 +137,7 @@ class InventoryRepository extends BaseRepository {
       JOIN medicines m ON mp.medicine_id = m.id
       JOIN potencies p ON mp.potency_id = p.id
       LEFT JOIN locations l ON i.default_location_id = l.id
-      WHERE i.current_quantity <= i.reorder_level
+      WHERE i.current_quantity <= i.reorder_level AND m.is_active = true AND mp.is_active = true
       ORDER BY m.name ASC
     `;
     const result = await this.executeQuery(text, [], client);
@@ -154,6 +157,7 @@ class InventoryRepository extends BaseRepository {
       JOIN potencies p ON mp.potency_id = p.id
       WHERE ib.expiry_date <= CURRENT_DATE + (CAST($1 AS INTEGER) * INTERVAL '1 day')
         AND ib.available_quantity > 0
+        AND m.is_active = true AND mp.is_active = true
       ORDER BY ib.expiry_date ASC
     `;
     const result = await this.executeQuery(text, [daysThreshold], client);

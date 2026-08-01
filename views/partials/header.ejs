@@ -1,3 +1,6 @@
+  <!-- Mobile Nav Backdrop -->
+  <div class="nav-mobile-backdrop" id="nav-backdrop"></div>
+
   <!-- Header Sticky Bar -->
   <header class="header glassmorphism">
     <div class="container nav-container">
@@ -5,15 +8,54 @@
         <div class="logo-icon">H</div>
         Homeo<span>Vault</span>
       </a>
-      
-      <ul class="nav-links">
-        <li><a href="/" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/' || activePath === '/index.html') ? 'active' : '' %>">Home</a></li>
-        <li><a href="/dashboard" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/dashboard' || activePath === '/dashboard.html') ? 'active' : '' %>">Dashboard</a></li>
-        <li><a href="/medicines.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('medicine') ? 'active' : '' %>">Catalog</a></li>
-        <li><a href="/inventory.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('inventory') || activePath.includes('stock') || activePath.includes('location') || activePath.includes('supplier')) ? 'active' : '' %>">Inventory</a></li>
-        <li><a href="/reports.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('report') ? 'active' : '' %>">Reports</a></li>
-        <li><a href="/settings.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('setting') || activePath.includes('backup') || activePath.includes('restore') || activePath.includes('notification')) ? 'active' : '' %>">Settings</a></li>
-        <li><a href="/profile.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('profile') ? 'active' : '' %>">Profile</a></li>
+
+      <ul class="nav-links" id="main-nav-links">
+        <li><a href="/" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/' || activePath === '/index.html') ? 'active' : '' %>">🏠 Home</a></li>
+        <li><a href="/dashboard" class="nav-link <%= typeof activePath !== 'undefined' && (activePath === '/dashboard' || activePath === '/dashboard.html') ? 'active' : '' %>">📊 Dashboard</a></li>
+        <li><a href="/medicines.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('medicine') ? 'active' : '' %>">💊 Catalog</a></li>
+        <li><a href="/inventory.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('inventory') || activePath.includes('stock') || activePath.includes('location') || activePath.includes('supplier')) ? 'active' : '' %>">📦 Inventory</a></li>
+        <li><a href="/reports.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('report') ? 'active' : '' %>">📈 Reports</a></li>
+        <li><a href="/settings.html" class="nav-link <%= typeof activePath !== 'undefined' && (activePath.includes('setting') || activePath.includes('backup') || activePath.includes('restore') || activePath.includes('notification')) ? 'active' : '' %>">⚙️ Settings</a></li>
+        <li><a href="/profile.html" class="nav-link <%= typeof activePath !== 'undefined' && activePath.includes('profile') ? 'active' : '' %>">👤 Profile</a></li>
       </ul>
+
+      <!-- Hamburger Button -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
     </div>
   </header>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var navLinks = document.getElementById('main-nav-links');
+      var backdrop = document.getElementById('nav-backdrop');
+      function openMenu() {
+        document.querySelector('.header').classList.add('menu-open');
+        navLinks.classList.add('mobile-active');
+        backdrop.classList.add('active');
+        toggle.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        document.querySelector('.header').classList.remove('menu-open');
+        navLinks.classList.remove('mobile-active');
+        backdrop.classList.remove('active');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', function () {
+        navLinks.classList.contains('mobile-active') ? closeMenu() : openMenu();
+      });
+      backdrop.addEventListener('click', closeMenu);
+      navLinks.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+  </script>
+
